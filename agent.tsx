@@ -12,6 +12,10 @@ import { z } from 'zod';
 const InspirationMaven = () => {
  
   const getBooksBySubject = async (subject, details = false, limit = 10) => {
+      console.log('---------------------------------');
+      console.log("Subject: ", subject);
+      console.log('---------------------------------');
+
       const url = `https://openlibrary.org/subjects/${subject}.json`;
       try {
         const response = await axios.get(url, {
@@ -20,6 +24,7 @@ const InspirationMaven = () => {
             limit: limit,
           },
         });
+
         return response.data;
       } catch (error) {
         console.error("Error fetching data:", error.message);
@@ -98,7 +103,7 @@ export default function MyAgent() {
   return (
     <Agent>
       <InspirationMaven />
-      <TTS voiceEndpoint="elevenlabs:scillia:kNBPK9DILaezWWUSHpF9" />
+      {/* <TTS voiceEndpoint="elevenlabs:scillia:kNBPK9DILaezWWUSHpF9" /> */}
     </Agent>
   );
 }
